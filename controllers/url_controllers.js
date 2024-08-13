@@ -4,7 +4,8 @@ const shortIdGen = require('short-id-gen');
 async function handleGetAllURLs(req, res){
     const allUrls = await Url.find({});
 
-    return res.json(allUrls);
+    //return res.json(allUrls);
+    return res.render('home');
 }
 
 async function handleGenerateNewShortURL(req, res){
@@ -18,7 +19,9 @@ async function handleGenerateNewShortURL(req, res){
         visitedHistory: []
     })
 
-    return res.json({id: shortId});    
+    return res.render('generated_url', {
+        id: shortId
+    });   
 }
 
 async function handleGetURL(req, res){

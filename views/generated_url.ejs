@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+
+        header{
+            background-color: skyblue;
+            height: 10em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1{
+            color: white;
+        }
+
+        h2{
+            display: block !important;
+        }
+
+
+        main{
+            text-align: center;
+            height: 20em;
+            padding-top: 5em;
+        }
+
+        h2{
+            font-size: 1.7em;
+            margin-bottom: 0.7em;
+        }
+
+        input{
+            width: 20em;
+        }
+
+        input, button {
+            height: 3em;
+            font-size: 1em;
+        }
+
+        button{
+            padding: 0em 1em;
+            background-color: skyblue;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>URL Shortner</h1>
+    </header>
+
+    <main>
+        <h2>Your shortened URL</h2>
+        <% if (locals.id) { %>
+            <span>localhost:8001/url/<%=id %></span>
+            <button type="submit"></button>                    
+        <%} %>
+        
+    </main>
+
+    
+    
+</body>
+</html>
