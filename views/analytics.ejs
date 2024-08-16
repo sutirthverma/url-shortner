@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Generated</title>
+    <title>Analytics</title>
 
     <style>
         *{
@@ -60,44 +60,23 @@
             border: 1px solid black;
             cursor: pointer;
         }
-
-        .analytics-button{
-            display: block;
-            margin: auto;
-            margin-top: 1em ;
-        }
         
     </style>
 </head>
 <body>
     <header>
-        <h1>URL Shortner</h1>
+        <h1>Analytics</h1>
     </header>
 
     <main>
-        <h2>Your shortened URL</h2>
-        <% if (locals.id) { %>
-            <span>localhost:8001/url/<span class="short-id"><%=id %></span></span>
-            
-        <%} %>
-        <button class="analytics-button">Show analytics</button>
-        
+        <h2>Enter the URL to be shorted</h2>
+        <form method="post" action="/url">
+            <input type="text" name="url" placeholder="www.example.com">
+            <button type="submit">Generate</button>
+        </form>
     </main>
 
     
     
-    <script>
-        let analytics = document.querySelector('.analytics-button');
-        let shortId = document.querySelector('.short-id').textContent;
-        analytics.addEventListener('click', async function(){
-            await hitShowAnalyticsApi();
-        });
-
-        function hitShowAnalyticsApi(){
-            console.log(shortId);
-            
-            fetch(`http://localhost:8001/url/analytics/${shortId}`);            
-        }
-    </script>
 </body>
 </html>
