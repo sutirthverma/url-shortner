@@ -80,24 +80,30 @@
             <span>localhost:8001/url/<span class="short-id"><%=id %></span></span>
             
         <%} %>
-        <button class="analytics-button">Show analytics</button>
+        <form action="/url/analytics/<%=id %>" method="get">
+            <button type="submit" class="analytics-button">Show analytics</button>
+        </form>
         
     </main>
 
     
     
-    <script>
+    <!-- <script>
         let analytics = document.querySelector('.analytics-button');
         let shortId = document.querySelector('.short-id').textContent;
         analytics.addEventListener('click', async function(){
             await hitShowAnalyticsApi();
         });
 
-        function hitShowAnalyticsApi(){
+        async function hitShowAnalyticsApi(){
             console.log(shortId);
             
-            fetch(`http://localhost:8001/url/analytics/${shortId}`);            
+            const response = await fetch(`http://localhost:8001/url/analytics/${shortId}`);            
+            if(response.ok){
+                console.log('content okay');
+                
+            }
         }
-    </script>
+    </script> -->
 </body>
 </html>
