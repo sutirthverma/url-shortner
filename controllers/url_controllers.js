@@ -12,10 +12,15 @@ async function handleGenerateNewShortURL(req, res){
     const body = req.body;
     if(!body.url) return res.status(400).json({error: "URL is required"});
     const shortId = shortIdGen.generate();
+    let url = body.url;
+
+    if(body.url.substr(0, 3) == 'www'){
+        url = `https://${url}`;
+    }
 
     const shortUrl = Url.create({
         shortId: shortId,
-        redirectURL: body.url,
+        redirectURL: url,
         visitedHistory: []
     })
 
