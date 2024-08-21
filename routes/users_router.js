@@ -7,7 +7,7 @@ const {
     handleGetLoginPage,
 } = require('../controllers/users_controller');
 
-Router.route('/')
+Router.route('/signup')
 .get(handleGetUserSignUpPage)
 .post(handleUserSignUp);
 

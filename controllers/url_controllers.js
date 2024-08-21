@@ -8,7 +8,9 @@ async function handleGetAllURLs(req, res){
     return res.render('home');
 }
 
-async function handleGenerateNewShortURL(req, res){
+async function handleGenerateNewShortURL(req, res){    
+    console.log(`Entered`);
+    
     const body = req.body;
     if(!body.url) return res.status(400).json({error: "URL is required"});
     const shortId = shortIdGen.generate();
@@ -21,7 +23,8 @@ async function handleGenerateNewShortURL(req, res){
     const shortUrl = Url.create({
         shortId: shortId,
         redirectURL: url,
-        visitedHistory: []
+        visitedHistory: [],
+        createdBy: req.user._id
     })
 
     return res.render('generated_url', {

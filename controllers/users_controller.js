@@ -1,8 +1,14 @@
 const Users = require('../models/users_model');
+const Urls = require('../models/url_model')
 const {v4: uuidv4} = require('uuid');
+const {
+    setUser,
+    getUser
+} = require('../services/auth');
 
 async function handleUserSignUp(req, res){
     const body = req.body;
+    const allUrlsList = Urls.find({});
 
     const user = Users.create({
         username: body.username,
@@ -10,7 +16,9 @@ async function handleUserSignUp(req, res){
         password: body.password
     });
 
-    return res.render('home');
+    return res.render('home', {
+        allUrls: allUrlsList
+    });
 }
 
 async function handleGetUserSignUpPage(req, res){
@@ -33,8 +41,10 @@ async function handleUserLogin(req, res){
     });
 
     const sessionId = uuidv4();
+    setUser(sessionId, user);
+    res.cookie('uid', sessionId);
 
-    return res.render('home');    
+    return res.redirect('/');
 }
 
 module.exports = {
