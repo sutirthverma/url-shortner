@@ -35,6 +35,8 @@ async function handleGenerateNewShortURL(req, res){
 async function handleGetURL(req, res){
     const shortId = req.params.shortId;
 
+    if(!shortId) return res.redirect('/');
+
     const entry = await Url.findOneAndUpdate({
         shortId
     },{
@@ -42,6 +44,8 @@ async function handleGetURL(req, res){
             visitHistory: {timestamp: Date.now()},
         }
     });
+
+    if(!entry) return res.redirect('/');
 
     console.log(entry);
     
